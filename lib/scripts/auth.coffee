@@ -15,4 +15,3 @@ jQuery ->
   chrome.storage.sync.set auth_token: params.auth_token, ->
 
     window.location.href = HOST
-
