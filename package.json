@@ -16,7 +16,9 @@
   ],
   "author": "Kaid",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "coffee-script": "^1.8.0"
+  },
   "devDependencies": {
     "bower": "^1.3.9",
     "gulp": "^3.8.9",
