@@ -1,4 +1,4 @@
-HOST = "http://127.0.0.1:3000"
+HOST = "http://collect.4ye.me"
 
 jQuery ->
   $signin  = jQuery ".popup-4ye .signin"
