@@ -55,7 +55,13 @@ gulp.task("styles", function() {
   gulp.src(app.css)
     .pipe(sass())
     .on("error", function(err) {
-      console.log(err.message);
+      var file = err.message.match(/^error\s([\w\.]*)\s/)[1];
+
+      util.log([
+        err.plugin,
+        util.colors.red(file),
+        err.message
+      ].join(" "));
     })
     .pipe(concat(app.dist.css))
     .pipe(gulp.dest(app.dist.dir));
