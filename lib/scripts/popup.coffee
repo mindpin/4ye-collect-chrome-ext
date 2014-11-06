@@ -1,6 +1,7 @@
 #
 # 设置全局ajax请求头
 # 
+
 set_global_auth_header = (auth_token)->
   authorization = if auth_token then "Bearer #{auth_token}" else null
 
@@ -30,7 +31,7 @@ chrome.storage.sync.get "auth_token", (item)->
           $signout.hide() 
 
     $signin.on "click", ->
-      url = "http://#{host}/sign_in?callback=chrome-extension://#{chrome.runtime.id}/dist/auth.html"
+      url = "http://#{host}/sign_in?callback=chrome-extension://#{chrome.runtime.id}/auth.html"
 
       chrome.tabs.create url: url
 
