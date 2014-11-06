@@ -88,9 +88,9 @@ gulp.task "build", [
 ]
 
 gulp.task "watch", ["build"], ->
-  gulp.watch(app.js[0], ["scripts"])
-  gulp.watch(app.css[0], ["styles"])
-  gulp.watch(app.html[0], ["htmls"])
+  gulp.watch(app.js, ["scripts"])
+  gulp.watch(app.css, ["styles"])
+  gulp.watch(app.html, ["htmls"])
   gulp.watch(app.manifest, ["manifest"])
   gulp.watch("./bower.json", ["bower"])
 
