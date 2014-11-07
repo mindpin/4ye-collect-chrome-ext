@@ -8,12 +8,16 @@ haml   = require("gulp-ruby-haml")
 smaps  = require("gulp-sourcemaps")
 bmain  = require("main-bower-files")
 
+# 防止编译 coffee 过程中 watch 进程中止
+plumber = require("gulp-plumber")
+
 app =
   js: "lib/scripts/*.coffee"
   css: "lib/styles/*.scss"
   html: "lib/htmls/*.haml"
   manifest: "manifest.json"
   icon: "icon.png"
+  images: "lib/images/*.*"
   dist:
     dir: "dist"
     css: "main.css"
@@ -41,6 +45,7 @@ gulp.task "bower", ->
 
 gulp.task "scripts", ->
   gulp.src(app.js)
+    .pipe(plumber())
     .pipe(smaps.init())
     .pipe(coffee())
     .pipe(smaps.write())
@@ -77,6 +82,9 @@ gulp.task "icon", ->
   gulp.src(app.icon)
     .pipe(gulp.dest(app.dist.dir))
 
+gulp.task "images", ->
+  gulp.src(app.images)
+    .pipe(gulp.dest(app.dist.dir))
 
 gulp.task "build", [
   "bower",
@@ -84,13 +92,15 @@ gulp.task "build", [
   "htmls",
   "scripts",
   "manifest",
-  "icon"
+  "icon",
+  "images"
 ]
 
 gulp.task "watch", ["build"], ->
   gulp.watch(app.js, ["scripts"])
   gulp.watch(app.css, ["styles"])
   gulp.watch(app.html, ["htmls"])
+  gulp.watch(app.images, ["images"])
   gulp.watch(app.manifest, ["manifest"])
   gulp.watch("./bower.json", ["bower"])
 

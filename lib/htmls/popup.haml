@@ -4,8 +4,51 @@
     %title 4ye Collect Auth
     %meta{:charset => "utf-8"}
     %link{:rel => "stylesheet", :href => "main.css"}
-  %body.popup-4ye
-    %button.signin 登录
-    %button.signout 登出
+  %body.collect-4ye{:style => 'display:none;'}
+    .loading{:style => 'display:none;'}
+      .icon
+      .info
+
+    .url-info
+      .icon
+      .title
+      .url
+      .chrome-tip{:style => 'display:none;'}
+        %span 这不是一个网页
+
+    .short-url-info{:style => 'display:none;'}
+      .short
+        %label 短网址：
+        .url
+      .qrcode
+        %label 二维条码图片：
+        .url
+        .img
+
+    .auth{:style => 'display:none;'}
+      %a.signin{:href => 'http://collect.4ye.me', :target => '_blank'}
+        %span 点这里登录
+
+    .user-info{:style => 'display:none;'}
+      .avatar
+      .name
+
+    .form
+      .inputs{:style => 'display:none;'}
+        %input.title{:name => 'title', :placeholder => '网页标题'}
+        %textarea.desc{:name => 'desc', :placeholder => '这是个怎样的网页？'}
+        %input.tags{:name => 'tags', :placeholder => 'TAGs（若有多个请使用空格或逗号分开）'}
+      .collected{:style => 'display:none;'}
+        .base
+          %span.i> 这个网址已经收集过了，
+          %a.siye{:target => '_blank'}> 在 4ye.me 查看
+        .tags
+          %span.notag 没有 TAG
+
+      .buttons{:style => 'display:none;'}
+        %a.submit{:href => '#'} 收集！到四叶书签
+        %a.close{:href => '#'} 关闭
+
+
     %script{:src => "deps.js"}
     %script{:src => "popup.js"}

@@ -29,5 +29,8 @@
     "gulp-ruby-haml": "^0.0.3",
     "gulp-ruby-sass": "^0.7.1",
     "main-bower-files": "^2.1.0"
+  },
+  "dependencies": {
+    "gulp-plumber": "^0.6.6"
   }
 }
