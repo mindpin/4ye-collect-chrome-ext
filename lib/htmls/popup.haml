@@ -9,6 +9,15 @@
       .icon
       .info
 
+    .logo
+      %a{:href => 'http://collect.4ye.me', :target => '_blank'}
+        %span.a 4ye
+        %span.b Collector
+
+    .user-info{:style => 'display:none;'}
+      .avatar
+      .name
+
     .url-info
       .icon
       .title
@@ -27,17 +36,15 @@
 
     .auth{:style => 'display:none;'}
       %a.signin{:href => 'http://collect.4ye.me', :target => '_blank'}
-        %span 点这里登录
-
-    .user-info{:style => 'display:none;'}
-      .avatar
-      .name
+        %span 点这里登录，然后才能收集网址
 
     .form
       .inputs{:style => 'display:none;'}
-        %input.title{:name => 'title', :placeholder => '网页标题'}
-        %textarea.desc{:name => 'desc', :placeholder => '这是个怎样的网页？'}
-        %input.tags{:name => 'tags', :placeholder => 'TAGs（若有多个请使用空格或逗号分开）'}
+        .screenshot
+        .fields
+          %input.title{:name => 'title', :placeholder => '网页标题'}
+          %textarea.desc{:name => 'desc', :placeholder => '这是个怎样的网页？'}
+          %input.tags{:name => 'tags', :placeholder => 'TAGs（若有多个请使用空格或逗号分开）'}
       .collected{:style => 'display:none;'}
         .base
           %span.i> 这个网址已经收集过了，

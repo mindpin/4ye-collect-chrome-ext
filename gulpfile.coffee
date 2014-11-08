@@ -18,12 +18,14 @@ app =
   manifest: "manifest.json"
   icon: "icon.png"
   images: "lib/images/*.*"
+  font_futura: "lib/font-futura/*.*"
   dist:
     dir: "dist"
     css: "main.css"
     deps: "deps.js"
     manifest: "manifest.json"
     icon: "icon.png"
+    font_futura_dir: "dist/font-futura"
 
 
 gulp.task "bower", ->
@@ -86,6 +88,10 @@ gulp.task "images", ->
   gulp.src(app.images)
     .pipe(gulp.dest(app.dist.dir))
 
+gulp.task "font_futura", ->
+  gulp.src(app.font_futura)
+    .pipe(gulp.dest(app.dist.font_futura_dir))
+
 gulp.task "build", [
   "bower",
   "styles",
@@ -93,7 +99,8 @@ gulp.task "build", [
   "scripts",
   "manifest",
   "icon",
-  "images"
+  "images",
+  "font_futura"
 ]
 
 gulp.task "watch", ["build"], ->

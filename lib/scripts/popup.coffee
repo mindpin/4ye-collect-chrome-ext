@@ -118,7 +118,7 @@ class Auth
         @popup.show_form()
 
       .fail (err)=>
-        # 验证未通过
+        # 验证未通过，显示登录按钮
         @$el.fadeIn(ANIMATE_DURATION)
 
       .always =>
@@ -133,6 +133,7 @@ class Form
     @$title_input = @$inputs.find('input[name=title]')
     @$desc_input = @$inputs.find('textarea[name=desc]')
     @$tags_input = @$inputs.find('input[name=tags]')
+    @$image = @$inputs.find('.screenshot')
 
     @$submit_btn = @$buttons.find('a.submit')
 
@@ -159,7 +160,7 @@ class Form
       @collected(res.data)
 
     .fail (res)=>
-      console.log res
+      console.log '网址检查出错', res
 
     .always =>
       func()
@@ -170,6 +171,14 @@ class Form
     @$collected.hide()
 
     @$title_input.val title
+    # TODO 获取页面 jQuery('meta[name=description]').attr('content')
+    # 需要用到消息机制
+
+    # 获取网页截图
+    chrome.tabs.captureVisibleTab null, {
+      format: 'png'
+    }, (src)=>
+      @$image.css 'background-image', "url(#{src})"
 
   collected: (data)->
     # 显示已经收集过了
@@ -204,6 +213,13 @@ class Form
       desc = @$desc_input.val()
       tags = @$tags_input.val()
 
+      # 处理 tag 字符串
+      # 按照 全角/半角 逗号/空格/句号划分
+      # 去重
+      tags = tags.split(/\,|\ |\.|\，|\　|\。/).filter (s)-> s.length
+      tags = jQuery.unique tags
+      tags = tags.join(',')
+
       @$submit_btn.addClass 'disabled'
       @$inputs.slideUp()
 
@@ -224,29 +240,34 @@ class Form
 
 class Popup
   constructor: ->
+    # 流程：
+    # 第一个请求：获取短网址信息
+    # 第二个请求：验证用户是否登录
+    # 如果第二个请求返回用户已登录，则进行第三个请求，检查网址收集情况
+
     # 当前 tab 对应的页面基本信息
     @url_info = new UrlInfo jQuery('.url-info')
     @url_info.load =>
 
       # 获取短网址和二维条码
-      loading0 = show_loading_after @url_info.$el, '正在获取短网址'
+      loading0 = show_loading_after @url_info.$el, '正在获取短网址 …'
       @short_url_info = new ShortUrlInfo jQuery('.short-url-info')
       @short_url_info.load @url_info.url, =>
         loading0.remove()
 
       # 登录验证书签服务
-      loading1 = show_loading_after @short_url_info.$el, '正在验证用户'
+      loading1 = show_loading_after @short_url_info.$el, '正在验证用户 …'
       @auth = new Auth(jQuery('.auth'), @)
       @auth.go =>
         loading1.remove()
 
   show_form: ->
     @form = new Form jQuery('.form')
+    loading2 = show_loading_after @short_url_info.$el, '正在读取数据 …'
     @form.load @url_info, =>
+      loading2.remove()
 
-  bind_events: ->
 
 jQuery ->
   jQuery(document.body).show()
-
   popup = new Popup

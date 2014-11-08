@@ -1,16 +1,36 @@
+@font-face {
+  font-family: "Futura-Condensed";
+  src: url('font-futura/Futura-Condensed.eot');
+  src: local('☺'), 
+    url('font-futura/Futura-Condensed.woff') format("woff"), 
+    url('font-futura/Futura-Condensed.ttf') format("truetype"), 
+    url('font-futura/Futura-Condensed.svg') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @mixin btn {
-  font-size:16px;
+  font-size:14px;
+  font-weight:bold;
   height:32px;line-height:32px;
   display:block;
-  border-radius:100px;
+  border-radius:3px;
   text-align:center;
   text-decoration:none;
   position:relative;
   transition: all .3s ease-in;
+  text-shadow: 0 0 3px rgba(black, 0.5);
+  border:solid 1px rgba(black, 0.1);
   &:active {
     top:2px;
   }
 }
+
+@mixin border {
+  border-top:dashed 1px #ccc;
+}
+
+$width: 480px;
 
 body.collect-4ye {
   padding:0;margin:0;
@@ -18,16 +38,57 @@ body.collect-4ye {
   font-family:"Segoe UI", "Helvetica Neue", "Helvetica", "Arial", "sans-serif", "微软雅黑";
   line-height:22px;
 
-  width:320px;
+  width:$width;
   background-color:#fafafa;
   min-height:40px;
   color:#333;
+
+  $fz:32px;
+  .logo {
+    padding:10px;
+    font-family: "Futura-Condensed";
+    font-weight: bold;
+    font-size:$fz;
+    height:$fz;line-height:$fz;
+    background-color: #f4f4f4;
+    border-bottom:solid 1px #d8d8d8;
+    a {text-decoration: none;}
+    span.a {color:#2E333F;}
+    span.b {color:#2A70E8;}
+  }
+
+  .user-info {
+    position:absolute;
+    padding:10px;
+    font-size: 14px;
+    word-break: break-all;
+    text-align: left;
+    height:$fz;
+    box-sizing:content-box;
+    top:0;right:0;
+
+    .avatar {
+      width:$fz;height:$fz;
+      border-radius:100px;
+      display: block;
+      float:right;
+      background-size: cover;
+    }
+    .name {
+      height:$fz;
+      line-height: $fz;
+      float: right;
+      margin-right: 15px;
+      font-size: 16px;
+    }
+  }
+
 
   .loading {
     padding:10px;
     overflow:hidden;
     background-color: #f4f4f4;
-    border-top:dashed 1px #ddd;
+    @include border;
     .icon {
       width:24px;height:24px;
       background: url(ajax-loader.gif) no-repeat;
@@ -57,16 +118,20 @@ body.collect-4ye {
   }
 
   .short-url-info {
+    @include border;
     padding:10px;
-    border-top: dashed 1px #ddd;
     position:relative;
     min-height: 122px;
     
     label {font-weight:bold;}
+    $w: $width - 20px - 10px - 122px;
 
-    .short {margin-bottom:5px;}
+    .short {
+      margin-bottom:10px;
+      width:$w;
+    }
     .qrcode .url {
-      width:168px;
+      width:$w;
       word-break: break-all;
     }
     .qrcode .img{
@@ -80,7 +145,7 @@ body.collect-4ye {
 
   .auth {
     padding:5px;
-    border-top:dashed 1px #ddd;
+    @include border;
     .signin {
       @include btn;
       color: white;
@@ -88,40 +153,28 @@ body.collect-4ye {
     }
   }
 
-  .user-info {
-    padding:10px;
-    border-top: dashed 1px #ddd;
-    font-size: 14px;
-    word-break: break-all;
-    text-align: left;
-    height:32px;
-    box-sizing:content-box;
-
-    .avatar {
-      width:32px;height:32px;
-      border-radius:100px;
-      display: block;
-      float:left;
-      background-size: cover;
-    }
-    .name {
-      height:32px;
-      line-height: 32px;
-      float: left;
-      margin-left: 15px;
-      font-size: 16px;
-    }
-  }
-
   .inputs {
-    border-top:dashed 1px #ddd;
+    @include border;
     padding:5px;
     padding-bottom:0px;
+    $w: $width - 10px - 14px - 185px;
+
+    .screenshot {
+      width:180px;height:180px;
+      box-sizing:border-box;
+      border:solid 1px #ccc;
+      float: left;
+      background-color: #f1f1f1;
+      background-size: cover;
+      background-position: center center;
+    }
+    .fields {margin-left:185px;}
+
     input {
       color:#222;
       border:solid 1px #bbb;
       box-shadow:0 1px 2px rgba(0, 0, 0, 0.15) inset;
-      width:320px - 10px - 14px;
+      width:$w;
       height:20px;
       line-height:20px;
       margin-bottom:5px;
@@ -129,11 +182,14 @@ body.collect-4ye {
       font-size:14px;
       font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", "sans-serif", "微软雅黑";
       border-radius:2px;
+      &:focus {
+        background-color: #ffffda;
+      }
     }
     textarea.desc {
       color:#222;
       border:solid 1px #bbb;
-      width:320px - 10px - 14px;
+      width:$w;
       height:100px;line-height:20px;
       margin-bottom:5px;
       padding: 4px 6px;
@@ -142,12 +198,15 @@ body.collect-4ye {
       border-radius:2px;
       display: block;
       resize: none;
+      &:focus {
+        background-color: #ffffda;
+      }
     }
   }
 
   .collected {
     padding:10px;
-    border-top:dashed 1px #ddd;
+    @include border;
     .base {
       margin-bottom:5px;
     }
@@ -171,32 +230,16 @@ body.collect-4ye {
   .buttons {
     padding:5px;
     overflow:hidden;
-    border-top:dashed 1px #ddd;
+    @include border;
     a {
+      @include btn;
       float:left;
       color:white;
-      display: block;
-      height:32px;line-height: 32px;
-      font-size:14px;
-      font-weight: bold;
-      // box-shadow: 0 1px 2px rgba(black, 0.15);
-      border:solid 1px rgba(black, 0.1);
-      cursor:pointer;
-      border-radius:100px;
-      position:relative;
-      // box-sizing: border-box;
-      text-align:center;
-      text-decoration: none;
-      transition: all .3s ease-in;
-      text-shadow: 0 0 3px rgba(black, 0.5);
-      &:active {
-        top:2px;
-      }
     }
 
     a.submit {
       background-color: #009800;
-      width: 230px - 2px;
+      width: ($width - 10px - 5px) * 2 / 3 - 2px;
       &:hover {
         background-color: lighten(#009800, 5%);
       }
@@ -208,7 +251,7 @@ body.collect-4ye {
     a.close {
       float: right;
       background-color: #333;
-      width: 75px - 2px;
+      width: ($width - 10px - 5px) / 3 - 2px;
       &:hover {
         background-color: lighten(#333, 10%);
       }
