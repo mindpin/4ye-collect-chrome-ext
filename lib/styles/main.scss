@@ -158,12 +158,12 @@ body.collect-4ye {
 
   .inputs {
     @include border;
-    padding:5px;
+    padding:10px;
     padding-bottom:0px;
-    $w: $width - 10px - 14px - 185px;
+    $w: $width - 20px - 14px - 200px;
 
     .screenshot {
-      width:180px;height:180px;
+      width:190px;height:190px;
       box-sizing:border-box;
       border:solid 1px #ccc;
       float: left;
@@ -171,7 +171,7 @@ body.collect-4ye {
       background-size: cover;
       background-position: center center;
     }
-    .fields {margin-left:185px;}
+    .fields {margin-left:200px;}
 
     input {
       color:#222;
@@ -180,7 +180,7 @@ body.collect-4ye {
       width:$w;
       height:20px;
       line-height:20px;
-      margin-bottom:5px;
+      margin-bottom:10px;
       padding:4px 6px;
       font-size:14px;
       font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", "sans-serif", "微软雅黑";
@@ -194,7 +194,7 @@ body.collect-4ye {
       border:solid 1px #bbb;
       width:$w;
       height:100px;line-height:20px;
-      margin-bottom:5px;
+      margin-bottom:10px;
       padding: 4px 6px;
       font-size: 14px;
       font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", "sans-serif", "微软雅黑";
@@ -231,7 +231,7 @@ body.collect-4ye {
   }
 
   .buttons {
-    padding:5px;
+    padding:10px;
     overflow:hidden;
     @include border;
     a {
@@ -242,7 +242,7 @@ body.collect-4ye {
 
     a.submit {
       background-color: #009800;
-      width: ($width - 10px - 5px) * 2 / 3 - 2px;
+      width: ($width - 20px - 10px) * 2 / 3 - 2px;
       &:hover {
         background-color: lighten(#009800, 5%);
       }
@@ -254,7 +254,7 @@ body.collect-4ye {
     a.close {
       float: right;
       background-color: #333;
-      width: ($width - 10px - 5px) / 3 - 2px;
+      width: ($width - 20px - 10px) / 3 - 2px;
       &:hover {
         background-color: lighten(#333, 10%);
       }

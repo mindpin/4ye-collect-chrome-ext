@@ -16,7 +16,6 @@ app =
   css: "lib/styles/*.scss"
   html: "lib/htmls/*.haml"
   manifest: "manifest.json"
-  icon: "icon.png"
   images: "lib/images/*.*"
   font_futura: "lib/font-futura/*.*"
   dist:
@@ -24,7 +23,6 @@ app =
     css: "main.css"
     deps: "deps.js"
     manifest: "manifest.json"
-    icon: "icon.png"
     font_futura_dir: "dist/font-futura"
 
 
@@ -79,11 +77,6 @@ gulp.task "manifest", ->
   gulp.src(app.manifest)
     .pipe(gulp.dest(app.dist.dir))
 
-
-gulp.task "icon", ->
-  gulp.src(app.icon)
-    .pipe(gulp.dest(app.dist.dir))
-
 gulp.task "images", ->
   gulp.src(app.images)
     .pipe(gulp.dest(app.dist.dir))
@@ -98,7 +91,6 @@ gulp.task "build", [
   "htmls",
   "scripts",
   "manifest",
-  "icon",
   "images",
   "font_futura"
 ]

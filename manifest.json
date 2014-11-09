@@ -3,7 +3,13 @@
 
   "name": "4ye Web URL Collector",
   "description": "URL collecting tool.",
-  "version": "0.0.2",
+  "version": "0.0.3",
+
+  "icons": {
+    "32": "collector_32.png",
+    "64": "collector_64.png",
+    "128": "collector_128.png"
+  },
 
   "permissions": [
     "tabs",
@@ -14,7 +20,7 @@
   ],
   
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "collector_19.png",
     "default_popup": "popup.html"
   },
 

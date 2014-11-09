@@ -93,6 +93,7 @@ class ShortUrlInfo
       @$qrcode_img.css 'background-image', "url(#{qrcode_url})"
 
     .fail (res)=>
+      # TODO: 短网址和二维条码加载失败
       console.log res
 
     .always =>
@@ -143,7 +144,7 @@ class Form
     url = @url_info.url
     title = @url_info.title
 
-    console.log url
+    # console.log url
     # 检查网址是否被收藏过
     jQuery.ajax 
       url: "#{HOST}/api/check_url"
@@ -191,7 +192,7 @@ class Form
     @$collected.find('a.siye')
       .attr 'href', data.site_url
 
-    console.log data
+    # console.log data
     tags = data.tags
     if tags.length
       # 如果有 tag 则显示
