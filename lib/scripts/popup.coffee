@@ -29,7 +29,7 @@ class Loading
   remove: ->
     # @$_el.slideUp ANIMATE_DURATION, =>
     #   @$_el.remove()
-    @$_el.remove()
+    @$_el.hide().remove()
 
 
 # 基本信息
@@ -97,7 +97,8 @@ class ShortUrlInfo
       console.log res
 
     .always =>
-      @$el.fadeIn(ANIMATE_DURATION)
+      # @$el.fadeIn(ANIMATE_DURATION)
+      @$el.show()
       func()
 
 class Auth
@@ -113,14 +114,16 @@ class Auth
         name = res.name
         jQuery('.user-info .avatar').css 'background-image', "url(#{avatar})"
         jQuery('.user-info .name').text name
-        jQuery('.user-info').fadeIn(ANIMATE_DURATION)
+        # jQuery('.user-info').fadeIn(ANIMATE_DURATION)
+        jQuery('.user-info').show()
 
         # 显示表单
         @popup.show_form()
 
       .fail (err)=>
         # 验证未通过，显示登录按钮
-        @$el.fadeIn(ANIMATE_DURATION)
+        # @$el.fadeIn(ANIMATE_DURATION)
+        @$el.show()
 
       .always =>
         func()
@@ -167,8 +170,10 @@ class Form
       func()
 
   show: (title)->
-    @$inputs.fadeIn(ANIMATE_DURATION)
-    @$buttons.fadeIn(ANIMATE_DURATION)
+    # @$inputs.fadeIn(ANIMATE_DURATION)
+    # @$buttons.fadeIn(ANIMATE_DURATION)
+    @$inputs.show()
+    @$buttons.show()
     @$collected.hide()
 
     @$title_input.val title
@@ -185,9 +190,11 @@ class Form
   collected: (data)->
     # 显示已经收集过了
     @$inputs.hide()
-    @$collected.fadeIn(ANIMATE_DURATION)
+    # @$collected.fadeIn(ANIMATE_DURATION)
+    @$collected.show()
     @$buttons
-      .fadeIn(ANIMATE_DURATION)
+      # .fadeIn(ANIMATE_DURATION)
+      .show()
       .addClass 'collected'
 
     @$collected.find('a.siye')
@@ -272,5 +279,4 @@ class Popup
 
 
 jQuery ->
-  jQuery(document.body).show()
   popup = new Popup

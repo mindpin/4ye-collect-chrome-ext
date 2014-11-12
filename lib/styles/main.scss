@@ -161,6 +161,7 @@ body.collect-4ye {
     padding:10px;
     padding-bottom:0px;
     $w: $width - 20px - 14px - 200px;
+    height:200px;
 
     .screenshot {
       width:190px;height:190px;
@@ -171,7 +172,7 @@ body.collect-4ye {
       background-size: cover;
       background-position: center center;
     }
-    .fields {margin-left:200px;}
+    .fields {margin-left:200px;height:200px;}
 
     input {
       color:#222;
