@@ -88,7 +88,7 @@ class ShortUrlInfo
         long_url: url
     .done (res)=>
       @$short.text res.short_url
-      qrcode_url = "http://s.4ye.me#{res.qrcode}"
+      qrcode_url = res.qrcode
       @$qrcode_url.text qrcode_url
       @$qrcode_img.css 'background-image', "url(#{qrcode_url})"
 
@@ -180,6 +180,7 @@ class Form
       format: 'png'
     }, (src)=>
       @$image.css 'background-image', "url(#{src})"
+      @image_base64_src = src
 
   collected: (data)->
     # 显示已经收集过了
@@ -232,6 +233,7 @@ class Form
           title: title
           desc: desc
           tags: tags
+          base64: @image_base64_src
         success: (res)=>
           # 收集完毕
           @$collected.find('span.i').text '收集成功！'
