@@ -1,4 +1,5 @@
 HOST = "http://collect.4ye.me"
+# HOST = "http://192.168.1.26:3000"
 ANIMATE_DURATION = 200
 
 STRING_AUTH = '正在获取用户信息 …'
@@ -236,6 +237,7 @@ class Form
         url: "#{HOST}/api/collect_url"
         type: 'POST'
         data:
+          favicon_url: @url_info.fav_icon_url
           url: @url_info.url
           title: title
           desc: desc
